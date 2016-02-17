@@ -84,8 +84,9 @@ def filelisting():
     #     import pdb; pdb.set_trace()
     # for file in files:
     #     print os.path.join(subdir, file)
-
-    return render_template('files.html', files=fileList)  
+    if session['logged_in'] == True:
+        return render_template('files.html', files=fileList)
+    return redirect(url_for('login'))
   
 ###
 # The functions below should be applicable to all Flask apps.
