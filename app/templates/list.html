@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+
+{% block js %}
+{% endblock %}
+
+
+{% block main %}
+<div class="container">
+<h1> Uploaded Files </h1>
+<ol>
+{% for file in files %}
+<li>{{file}}</li>
+{% endfor %}
+</ol>
+</div>
+{% endblock %}

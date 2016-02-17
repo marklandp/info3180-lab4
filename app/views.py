@@ -84,7 +84,7 @@ def filelisting():
     # for file in files:
     #     print os.path.join(subdir, file)
     if session['logged_in'] == True:
-        return render_template('files.html', files=fileList)
+        return render_template('list.html', files=fileList)
     return redirect(url_for('login'))
   
 ###
