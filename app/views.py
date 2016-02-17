@@ -79,8 +79,7 @@ def filelisting():
     """Render the website's about page."""
     rootdir = os.getcwd()
     fileList = os.listdir(rootdir + '/app/static/uploads')
-    # for subdir, dirs, files in os.walk(rootdir 
-    #                                 + '/app/static/uploads'):
+    # for subdir, dirs, files in os.walk(rootdir + '/app/static/uploads'):
     #     import pdb; pdb.set_trace()
     # for file in files:
     #     print os.path.join(subdir, file)
