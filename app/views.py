@@ -43,7 +43,7 @@ def add_entry():
     title = request.form['title']
     file = request.files['file']
     filename = file.filename
-    file.save(os.path.join("filefolder", filename))
+    file.save(os.path.join("static/uploads", filename))
     return render_template("files.html",title=title)
     #g.db.execute('insert into entries (title, text) values (?, ?)',
     #             [title, filename])
