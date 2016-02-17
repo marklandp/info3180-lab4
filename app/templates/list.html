@@ -10,7 +10,10 @@
 <h1> Uploaded Files </h1>
 <ol>
 {% for file in files %}
-<li>{{file}}</li>
+ {% if '.' in file and file.rsplit('.', 1)[1] in images %}
+			<img height="400px" width="400px" src="{{ url_for('uploaded_file', filename=file) }}">
+		{% endif %}
+ <li>{{file}}</li>
 {% endfor %}
 </ol>
 </div>

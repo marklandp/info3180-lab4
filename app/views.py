@@ -8,7 +8,7 @@ This file creates your application.
 
 from app import app
 import os
-from flask import session,flash,render_template, request, redirect, url_for
+from flask import session,flash,render_template, request, redirect, url_for, send_from_directory
 USERNAME="admin"
 PASSWORD="naseberry"
 SECRET_KEY="super secure key"
@@ -80,8 +80,14 @@ def filelisting():
     #     print os.path.join(subdir, file)
     if session['logged_in'] == True:
         fileList = os.listdir(rootdir + '/app/static/uploads')
-        return render_template('list.html', files=fileList)
+        images = ['jpg']
+        return render_template('list.html', files=fileList, images=images)
     return redirect(url_for('login'))
+    
+@app.route('/uploads/<filename>')
+def uploaded_file(filename):
+    uploads = os.getcwd() + "/app/static/uploads"
+    return send_from_directory(uploads, filename)
   
 ###
 # The functions below should be applicable to all Flask apps.
