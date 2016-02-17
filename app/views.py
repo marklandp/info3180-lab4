@@ -46,11 +46,7 @@ def add_entry():
     rootdir = os.getcwd()
     file.save(os.path.join(rootdir + "/app/static/uploads", filename))
     return render_template("files.html",title=title)
-    #g.db.execute('insert into entries (title, text) values (?, ?)',
-    #             [title, filename])
-    #g.db.commit()
-    #flash('New entry was successfully posted')
-    #return redirect(url_for('show_entries'))
+
 
 @app.route('/login', methods=['POST','GET'])
 def login():
@@ -78,12 +74,12 @@ def logout():
 def filelisting():
     """Render the website's about page."""
     rootdir = os.getcwd()
-    fileList = os.listdir(rootdir + '/app/static/uploads')
     # for subdir, dirs, files in os.walk(rootdir + '/app/static/uploads'):
     #     import pdb; pdb.set_trace()
     # for file in files:
     #     print os.path.join(subdir, file)
     if session['logged_in'] == True:
+        fileList = os.listdir(rootdir + '/app/static/uploads')
         return render_template('list.html', files=fileList)
     return redirect(url_for('login'))
   
