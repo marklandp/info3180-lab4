@@ -43,7 +43,8 @@ def add_entry():
     title = request.form['title']
     file = request.files['file']
     filename = file.filename
-    file.save(os.path.join("static/uploads", filename))
+    rootdir = os.getcwd()
+    file.save(os.path.join(rootdir + "/app/static/uploads", filename))
     return render_template("files.html",title=title)
     #g.db.execute('insert into entries (title, text) values (?, ?)',
     #             [title, filename])
@@ -72,6 +73,19 @@ def login():
 def logout():
     session['logged_in'] = False
     return redirect(url_for('login'))
+  
+@app.route('/filelisting')
+def filelisting():
+    """Render the website's about page."""
+    rootdir = os.getcwd()
+    fileList = os.listdir(rootdir + '/app/static/uploads')
+    # for subdir, dirs, files in os.walk(rootdir 
+    #                                 + '/app/static/uploads'):
+    #     import pdb; pdb.set_trace()
+    # for file in files:
+    #     print os.path.join(subdir, file)
+
+    return render_template('files.html', files=fileList)  
   
 ###
 # The functions below should be applicable to all Flask apps.
